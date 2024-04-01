@@ -21,9 +21,11 @@ public class financeiroConfig {
     public DirectExchange direct() {
         return new DirectExchange("pagamento.direct");
     }
-
+    
+    //configura filas anonimas
     private static class ReceiverConfig {
 
+        //metodos que criam e retornam filas anonimas
         @Bean
         public Queue autoDeleteQueue1() {
             return new AnonymousQueue();
@@ -34,7 +36,7 @@ public class financeiroConfig {
             return new AnonymousQueue();
         }
 
-
+        //metodo que criam e retornam associacao entre a filas e a troca direta
         @Bean
         public Binding binding1(DirectExchange direct,
                                  Queue autoDeleteQueue1) {
@@ -51,12 +53,14 @@ public class financeiroConfig {
                     .with("pendente");
         }
 
+        //processa mensagem recebidas
         @Bean
         public FinanceiroReceiver receiver() {
             return new FinanceiroReceiver();
         }
     }
 
+    //Envia mensagens
     @Bean
     public FinanceiroSender sender() {
         return new FinanceiroSender();
