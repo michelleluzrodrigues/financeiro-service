@@ -14,9 +14,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class financeiroConfig {
 
+    //Usada para rotear mensagens de acordo com os padrões de roteamento 
     @Bean
     public TopicExchange topic() { return new TopicExchange("financeiro.topic"); }
 
+    //Rotea mensagens para as filas especificas
     @Bean
     public DirectExchange direct() {
         return new DirectExchange("pagamento.direct");
