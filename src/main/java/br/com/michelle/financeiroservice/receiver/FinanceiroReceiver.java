@@ -13,6 +13,7 @@ public class FinanceiroReceiver {
     @Autowired
     private FinanceiroService financeiroService;
 
+    // ouvinte da mensagens autoDeleteQueue
     @RabbitListener(queues = "#{autoDeleteQueue1.name}")
     public void receive1(String in) throws InterruptedException {
         receive(in, 1);
