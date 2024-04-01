@@ -17,6 +17,7 @@ public class FinanceiroController {
         this.service = service;
     }
 
+    //receve as solicitacoes para efetuar pagamento
     @PostMapping
     public void pagar(@RequestBody FormaPagamento formaPagamento) {
         service.processarPagamento(formaPagamento);
